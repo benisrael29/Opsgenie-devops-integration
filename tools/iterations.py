@@ -33,7 +33,6 @@ def get_current_iteration_data(organization, project, pat, team):
 organization = 'dhapi-platform'
 project = 'APIGW-Platform'
 pat = 'wse4nkmyc3dyx3ys3seecreeft5hxihhyp6k3h7aj2xi4df7jgpq'
-#team= 'Operate%20Team'
+team= 'Operate%20Team'
 
-
-get_current_iteration_data(organization, project, pat, team)
+#get_current_iteration_data(organization, project, pat, team)

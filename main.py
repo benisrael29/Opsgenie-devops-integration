@@ -3,7 +3,7 @@ import requests
 from datetime import datetime
 from requests.auth import HTTPBasicAuth
 import base64
-from iterations import get_current_iteration_data
+from tools.iterations import get_current_iteration_data
 
 PAT = 'wse4nkmyc3dyx3ys3seecreeft5hxihhyp6k3h7aj2xi4df7jgpq'
 ORGANISATION = 'dhapi-platform'
@@ -210,7 +210,8 @@ def test():
 
 
 if __name__ == "__main__":
-    print(test())
+    get_current_iteration_data(ORGANISATION, PROJECT, PAT, TEAM)
+    #print(test())
     # lambda_handler(None, None)
 
 
