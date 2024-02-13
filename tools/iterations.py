@@ -1,18 +1,18 @@
 import requests
 import base64
 from datetime import datetime
+import os
 
-
-def get_current_iteration_data(organization, project, pat, team):
+def get_current_iteration_data():
     """
     List all iteration paths for a given project and team in Azure DevOps.
     """
     # Encode the PAT for use in the header
-    encoded_pat = base64.b64encode(bytes(':' + pat, 'utf-8')).decode('ascii')
+    encoded_pat = base64.b64encode(bytes(':' + os.environ['PAT'], 'utf-8')).decode('ascii')
     headers = {'Authorization': f'Basic {encoded_pat}'}
     
     # Construct the URL for fetching iterations for the specified team and project
-    url = f'https://dev.azure.com/{organization}/{project}/{team}/_apis/work/teamsettings/iterations?api-version=6.0'
+    url = f"https://dev.azure.com/{os.environ['ORGANISATION']}/{os.environ['PROJECT']}/{os.environ['TEAM']}/_apis/work/teamsettings/iterations?api-version=6.0"
     
     response = requests.get(url, headers=headers)
     print(response.text)
