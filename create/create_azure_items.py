@@ -12,7 +12,7 @@ def map_priority(opsgenie_priority):
     priority_map = {"P1": 1, "P2": 2, "P3": 3, "P4": 4, "P5": 4} 
     return priority_map.get(opsgenie_priority, 1)  # Default to 1 if not found
 
-def create_azure_devops_work_item(alert_data, current_iteration, area_path='APIGW-Platform\\Operate Team'):
+def create_azure_devops_work_item(alert_data, current_iteration, area_path=os.environ['AREA_PATH']):
     # Encode the PAT for the header
     encoded_pat = base64.b64encode(bytes(':' + os.environ['PAT'], 'utf-8')).decode('ascii')
 
@@ -24,7 +24,6 @@ def create_azure_devops_work_item(alert_data, current_iteration, area_path='APIG
         priority = 1
 
     url = f"https://dev.azure.com/{os.environ['ORGANISATION']}/{os.environ['PROJECT']}/_apis/wit/workitems/$Item?api-version=6.0"
-    print(url)
     headers = {
         'Content-Type': 'application/json-patch+json',
         'Authorization': f'Basic {encoded_pat}'
@@ -41,11 +40,10 @@ def create_azure_devops_work_item(alert_data, current_iteration, area_path='APIG
         # Add more fields as needed
     ]
     response = requests.post(url, headers=headers, json=body)
-    print(response.status_code)
 
     # Check for successful response
     if response.status_code == 200:
-        print("Work item created successfully.")
+        print("Work item created successfully." )
         return response.json()
     else:
         # Handle errors

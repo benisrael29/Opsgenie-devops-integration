@@ -14,15 +14,9 @@ from create.get.get_all_board_items import get_all_board_items
 from create.close_azure_ticket import find_and_close_work_item_by_tag
 
 
-
-PAT = 'wse4nkmyc3dyx3ys3seecreeft5hxihhyp6k3h7aj2xi4df7jgpq'
-ORGANISATION = 'dhapi-platform'
-PROJECT = 'APIGW-Platform'
-TEAM = 'Test'
-
 def acknowledge_alert_event(event):
     event_data= event['alert']
-    comment = "Alert was acknowledged by " + event_data['username']
+    comment = "Alert was acknowledged by " + event_data['username'] + ' at ' + datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     # Implement acknowledge alert event
     find_and_add_comment_to_work_item(event_data['alertId'], comment)
     return {
@@ -33,7 +27,7 @@ def acknowledge_alert_event(event):
 
 def close_alert_event(event):
     event_data= event['alert']
-    comment = "Alert was closed by " + event_data['username']
+    comment = "Alert was closed by " + event_data['username'] + ' at ' + datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     find_and_close_work_item_by_tag(event_data['alertId'], comment=comment)
     return {
         'statusCode': 200,
@@ -42,13 +36,12 @@ def close_alert_event(event):
 
 def lambda_handler(event, context):
     # Extract alert data from Opsgenie event
-    #event_body = json.loads(event['body'])
-    event_body = event
+    event_body = json.loads(event['body'])
+    #event_body = event
 
     # Filter based on event type
     if event_body['action'] == 'Create':
         current_iteration = get_current_iteration_data()
-        print("Current iteration:", current_iteration)
         return create_alert_event(event_body, current_iteration)
     
     if event_body['action'] == 'Acknowledge':

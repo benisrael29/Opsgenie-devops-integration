@@ -15,14 +15,10 @@ def get_current_iteration_data():
     url = f"https://dev.azure.com/{os.environ['ORGANISATION']}/{os.environ['PROJECT']}/{os.environ['TEAM']}/_apis/work/teamsettings/iterations?api-version=6.0"
     
     response = requests.get(url, headers=headers)
-    print(response.text)
     if response.status_code == 200:
         iterations = response.json()
         for iteration in iterations['value']:
-            print(iteration['name'], ":", iteration['path'], 'Start: ', iteration['attributes']['startDate'],'End date: ', iteration['attributes']['finishDate'])
             if iteration['attributes']['timeFrame'] == 'current':
-                print('Current Iteration:', iteration['name'])
-                print(iteration)
                 return iteration
     else:
         print(f"Failed to fetch iterations. HTTP Status Code: {response.status_code}")

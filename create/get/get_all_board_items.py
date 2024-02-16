@@ -20,7 +20,6 @@ def get_all_board_items(team='Test'):
     """
     # WiQL query URL
     url = f"https://dev.azure.com/{os.environ['ORGANISATION']}/{os.environ['PROJECT']}/{team}/_apis/wit/wiql?api-version=6.0"
-    print(url)
 
     # WiQL query to fetch all active work items (IDs only)
     query = {
