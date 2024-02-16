@@ -53,6 +53,35 @@ To deploy the integration as an AWS Lambda function:
 6. Set up an API Gateway trigger to expose your Lambda function as an HTTP endpoint.
 7. Configure Opsgenie to send alerts to the HTTP endpoint provided by API Gateway.
 
+## Opsgenie Configuration
+
+To integrate Opsgenie with your AWS Lambda function, you need to configure Opsgenie to send alerts to the Lambda function via an API Gateway trigger. Follow these steps to set up the Opsgenie configuration:
+
+1. **Create an Webhook Integration in Opsgenie:**
+   - Log in to your Opsgenie account.
+   - Navigate to the `Integrations` page and select `Add integration`.
+   - Choose `Webhook` as the integration type.
+   - Fill in the integration details and save your changes.
+
+2. **Configure Webhook URL:**
+   - After setting up your AWS Lambda function with an API Gateway trigger, copy the API endpoint URL provided by AWS.
+   - In Opsgenie, go to the integration you created and find the `Settings` section.
+   - Paste the API Gateway endpoint URL into the webhook URL field.
+   - Specify the HTTP method as `POST` if requried.
+
+3. **Define Alert Actions:**
+   - In the same integration settings, define which Opsgenie actions (Create, Acknowledge, Close) should trigger the webhook.
+   - Ensure that the payload format matches the expected format in your Lambda function.
+
+4. **Save and Enable Integration:**
+   - Once you have configured the webhook and actions, save your integration.
+   - Ensure the integration is enabled to start sending alerts to your Lambda function.
+
+5. **Test the Integration:**
+   - It's a good practice to test the integration by creating a test alert in Opsgenie.
+   - Verify that the alert triggers a new event in your AWS Lambda function and that the corresponding action is taken in Azure DevOps.
+
+By following these steps, you will have configured Opsgenie to communicate with your AWS Lambda function, enabling automated alert management with Azure DevOps.
 
 ## Testing
 The repository includes a script for running test data sets against the Lambda function. Use the `run_test_data_sets` function in `main.py` to simulate Opsgenie events and verify the integration's response.
