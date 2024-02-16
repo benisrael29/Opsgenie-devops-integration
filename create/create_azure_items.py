@@ -37,7 +37,6 @@ def create_azure_devops_work_item(alert_data, current_iteration, area_path=os.en
         {"op": "add", "path": "/fields/System.IterationPath", "value": current_iteration['path']},
         {"op": "add", "path": "/fields/System.Tags", "value": alert_data["alertId"]},
 
-        # Add more fields as needed
     ]
     response = requests.post(url, headers=headers, json=body)
 
@@ -56,8 +55,6 @@ def create_alert_event(event, current_iteration):
 
     # edit alert data priority to match Azure DevOps priority
     alert_data['priority'] = map_priority(alert_data.get('priority', 'P1'))
-
-    
 
     # Create Azure DevOps work item
     response = create_azure_devops_work_item(alert_data, current_iteration)
