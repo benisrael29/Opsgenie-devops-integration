@@ -34,7 +34,6 @@ def add_comment_to_work_item(work_item_id, comment_text):
 
     # Check for successful response
     if response.status_code in [200, 201]:
-        print("Comment added successfully.")
         return response.json()
     else:
         # Handle errors
@@ -45,6 +44,7 @@ def add_comment_to_work_item(work_item_id, comment_text):
 def find_and_add_comment_to_work_item(tag, comment_text):
     # Find work items with the specified tag
     work_items = query_work_items_by_tag(tag)
+    print('Work items to add comment to:', work_items)
 
     # Add a comment to each work item
     for work_item in work_items:

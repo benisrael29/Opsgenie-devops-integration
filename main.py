@@ -12,12 +12,13 @@ from create.create_azure_items import create_azure_devops_work_item
 from create.create_azure_description import find_and_add_comment_to_work_item
 from create.get.get_all_board_items import get_all_board_items
 from create.close_azure_ticket import find_and_close_work_item_by_tag
+
+
+
 PAT = 'wse4nkmyc3dyx3ys3seecreeft5hxihhyp6k3h7aj2xi4df7jgpq'
 ORGANISATION = 'dhapi-platform'
 PROJECT = 'APIGW-Platform'
 TEAM = 'Test'
-
-
 
 def acknowledge_alert_event(event):
     event_data= event['alert']
@@ -39,7 +40,6 @@ def close_alert_event(event):
         'body': json.dumps({'message': 'Closed alert'})
     }
 
-
 def lambda_handler(event, context):
     # Extract alert data from Opsgenie event
     #event_body = json.loads(event['body'])
@@ -48,6 +48,7 @@ def lambda_handler(event, context):
     # Filter based on event type
     if event_body['action'] == 'Create':
         current_iteration = get_current_iteration_data()
+        print("Current iteration:", current_iteration)
         return create_alert_event(event_body, current_iteration)
     
     if event_body['action'] == 'Acknowledge':
@@ -56,13 +57,6 @@ def lambda_handler(event, context):
     if event_body['action'] == 'Close':
         return close_alert_event(event_body)
     
-def test():
-    current_iteration = get_current_iteration_data()
-
-    #get_all_board_items()
-    create_azure_devops_work_item(alert_data={'alertId': 'e2fc53e3-9644-42f1-8218-bf3336065c01-1707370093454','message': 'TEST message', 'description': 'Test description', 'priority': 1},current_iteration=current_iteration)
-    #find_and_print_current_iteration(ORGANISATION, PROJECT, TEAM, PAT)
-
 def run_test_data_sets():
     # Define the path to the test data directory
     test_data_dir = 'test/data'

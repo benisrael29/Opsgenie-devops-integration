@@ -2,7 +2,7 @@
     "action": "Close",
     "alert": {
         "alertId": "0db61a51-b42d-44e2-8c5b-c2e21e4d5003-1708054797059",
-        "message": "TEst 2",
+        "message": "Testing 2",
         "tags": [],
         "tinyId": "25398",
         "entity": "",

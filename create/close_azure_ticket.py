@@ -39,7 +39,7 @@ def close_azure_devops_work_item(work_item_id, closed_state='Closed'):
 
     # Check for successful response
     if response.status_code in [200]:
-        print("Work item closed successfully.")
+        print("Work item " + str(work_item_id) +" closed successfully.")
         return response.json()
     else:
         # Handle errors
