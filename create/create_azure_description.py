@@ -7,7 +7,7 @@ import base64
 from dotenv import load_dotenv
 load_dotenv()
 
-from get.get_based_on_tag import query_work_items_by_tag
+from create.get.get_based_on_tag import query_work_items_by_tag
 
 
 
@@ -54,4 +54,4 @@ def find_and_add_comment_to_work_item(tag, comment_text):
     
 
 if __name__ == "__main__":
-    add_comment_to_work_item(12345, "This is a test comment.")
+    add_comment_to_work_item(28227, "This is a test comment.")

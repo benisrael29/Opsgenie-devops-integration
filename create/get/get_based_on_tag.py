@@ -10,7 +10,7 @@ def query_work_items_by_tag(tag):
         'Authorization': f'Basic {encoded_pat}'
     }
     query = {
-        "query": f"SELECT [System.Id], [System.Title], [System.State] FROM WorkItems WHERE [System.Tags] CONTAINS '{tag}'"
+        "query": f"SELECT [System.Id], [System.Title], [System.State] FROM WorkItems WHERE [System.Tags] CONTAINS '{tag}' AND [System.State] IN ('Proposed','Active' ,'Investigating','Awaiting Other','Scheduled')"
     }
     response = requests.post(url, headers=headers, json=query)
 

@@ -56,16 +56,13 @@ def create_alert_event(event, current_iteration):
     alert_data = event.get('alert', {})
     print("Alert data:", alert_data)
 
-    azure_alert_data = {
-        'message': alert_data.get('message', 'No message'),
-        'description': alert_data.get('description', 'No description'),
-        'priority': alert_data.get('priority', 'P1')  # Default to P1 if not provided
-    }
+    # edit alert data priority to match Azure DevOps priority
+    alert_data['priority'] = map_priority(alert_data.get('priority', 'P1'))
 
-    # Azure DevOps setup
+    
 
     # Create Azure DevOps work item
-    response = create_azure_devops_work_item(azure_alert_data, current_iteration)
+    response = create_azure_devops_work_item(alert_data, current_iteration)
     
     return {
         'statusCode': 200,

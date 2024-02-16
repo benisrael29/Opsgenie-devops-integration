@@ -1,0 +1,36 @@
+{
+    "action": "Acknowledge",
+    "alert": {
+        "alertId": "077f6a1d-d6ba-49a8-b60e-515193da8d51-1708054554547",
+        "message": "Test",
+        "tags": [],
+        "tinyId": "25395",
+        "entity": "",
+        "alias": "077f6a1d-d6ba-49a8-b60e-515193da8d51-1708054554547",
+        "createdAt": 1708054554547,
+        "updatedAt": 1708054558908000000,
+        "username": "bisrael@deloitte.com.au",
+        "userId": "bdedcd79-e0f5-44a9-9142-9159f7a5c722",
+        "description": "",
+        "responders": [
+            {
+                "id": "bdedcd79-e0f5-44a9-9142-9159f7a5c722",
+                "type": "user",
+                "name": "bisrael@deloitte.com.au"
+            }
+        ],
+        "teams": [],
+        "actions": [],
+        "details": {},
+        "priority": "P3",
+        "oldPriority": "P3",
+        "source": "bisrael@deloitte.com.au"
+    },
+    "source": {
+        "name": "",
+        "type": "web"
+    },
+    "integrationName": "Azure Devops Integration Beta",
+    "integrationId": "f2f88c2c-df0d-43db-8191-b211ef72a76e",
+    "integrationType": "Webhook"
+}
