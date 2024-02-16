@@ -12,7 +12,7 @@ def map_priority(opsgenie_priority):
     priority_map = {"P1": 1, "P2": 2, "P3": 3, "P4": 4, "P5": 4} 
     return priority_map.get(opsgenie_priority, 1)  # Default to 1 if not found
 
-def create_azure_devops_work_item(alert_data, team, current_iteration, area_path='APIGW-Platform\\Test'):
+def create_azure_devops_work_item(alert_data, current_iteration, area_path='APIGW-Platform\\Test'):
     # Encode the PAT for the header
     encoded_pat = base64.b64encode(bytes(':' + os.environ['PAT'], 'utf-8')).decode('ascii')
 
@@ -36,6 +36,7 @@ def create_azure_devops_work_item(alert_data, team, current_iteration, area_path
         {"op": "add", "path": "/fields/System.Description", "value": alert_data.get("description", "No description provided")},
         {"op": "add", "path": "/fields/Microsoft.VSTS.Common.Priority", "value": priority},
         {"op": "add", "path": "/fields/System.IterationPath", "value": current_iteration['path']},
+        {"op": "add", "path": "/fields/System.Tags", "value": alert_data["alertId"]},
 
         # Add more fields as needed
     ]
