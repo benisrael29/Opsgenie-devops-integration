@@ -1,18 +1,15 @@
-import json
 import os
+import json
+import base64
 import requests
 from datetime import datetime
-from requests.auth import HTTPBasicAuth
-import base64
-from dotenv import load_dotenv
-load_dotenv()
 from tools.iterations import get_current_iteration_data
 from create.create_azure_items import create_alert_event
-from create.create_azure_items import create_azure_devops_work_item
 from create.create_azure_description import find_and_add_comment_to_work_item
-from create.get.get_all_board_items import get_all_board_items
 from create.close_azure_ticket import find_and_close_work_item_by_tag
 
+from dotenv import load_dotenv
+load_dotenv()
 
 def acknowledge_alert_event(event):
     event_data= event['alert']
