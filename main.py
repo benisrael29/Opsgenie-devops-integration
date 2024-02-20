@@ -8,8 +8,8 @@ from create.create_azure_items import create_alert_event
 from create.create_azure_description import find_and_add_comment_to_work_item
 from create.close_azure_ticket import find_and_close_work_item_by_tag
 
-from dotenv import load_dotenv
-load_dotenv()
+""" from dotenv import load_dotenv
+load_dotenv() """
 
 def acknowledge_alert_event(event):
     event_data= event['alert']
@@ -33,8 +33,8 @@ def close_alert_event(event):
 
 def lambda_handler(event, context):
     # Extract alert data from Opsgenie event
-    event_body = json.loads(event['body'])
-    #event_body = event
+    #event_body = json.loads(event['body'])
+    event_body = event
 
     # Filter based on event type
     if event_body['action'] == 'Create':

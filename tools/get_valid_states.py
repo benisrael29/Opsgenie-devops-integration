@@ -1,8 +1,8 @@
 import requests
 import base64
 import os
-from dotenv import load_dotenv
-load_dotenv()
+""" from dotenv import load_dotenv
+load_dotenv() """
 
 def get_and_print_work_item_states( work_item_type="Item"):
     """

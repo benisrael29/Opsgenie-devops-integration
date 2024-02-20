@@ -5,8 +5,8 @@ import requests
 from datetime import datetime
 from requests.auth import HTTPBasicAuth
 import base64
-from dotenv import load_dotenv
-load_dotenv()
+""" from dotenv import load_dotenv
+load_dotenv() """
 
 
 def get_all_board_items(team='Test'):
@@ -63,3 +63,6 @@ def get_all_board_items(team='Test'):
     
 if __name__ == "__main__":
     get_all_board_items()
+
+
+    #https://4jr5547yh3.execute-api.ap-southeast-2.amazonaws.com/default/ADHA_OG_Azure_Devops_Integration

@@ -4,8 +4,8 @@ import requests
 from datetime import datetime
 from requests.auth import HTTPBasicAuth
 import base64
-from dotenv import load_dotenv
-load_dotenv()
+""" from dotenv import load_dotenv
+load_dotenv() """
 
 from create.get.get_based_on_tag import query_work_items_by_tag
 from create.create_azure_description import add_comment_to_work_item

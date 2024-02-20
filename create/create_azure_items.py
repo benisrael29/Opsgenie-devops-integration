@@ -2,8 +2,8 @@
 import json
 import requests
 import os
-from dotenv import load_dotenv
-load_dotenv()
+""" from dotenv import load_dotenv
+load_dotenv() """
 from datetime import datetime
 from requests.auth import HTTPBasicAuth
 import base64
