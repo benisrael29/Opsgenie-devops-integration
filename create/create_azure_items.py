@@ -7,12 +7,35 @@ load_dotenv() """
 from datetime import datetime
 from requests.auth import HTTPBasicAuth
 import base64
+import re
 
 def map_priority(opsgenie_priority):
     priority_map = {"P1": 1, "P2": 2, "P3": 3, "P4": 4, "P5": 4} 
     return priority_map.get(opsgenie_priority, 1)  # Default to 1 if not found
 
+def format_title(alert_data):
+    "Check for INC followed by at least 5 numbers is in the title. If not found, look for it in the descrption and add it to the start of the title"
+    title = alert_data.get('message', '')
+    if re.search(r'INC\d{4,}', title):
+        return alert_data
+    
+    description = alert_data.get('description', '')
+
+    match = re.search(r'INC\d{4,}', description)
+    if match:
+        alert_data['message'] = f"{match.group()} - {title}"
+        return alert_data
+    else:
+        return alert_data
+
+
+
 def create_azure_devops_work_item(alert_data, current_iteration, area_path=os.environ['AREA_PATH']):
+
+    print("Alert data", alert_data)
+    alert_data = format_title(alert_data)
+
+
     # Encode the PAT for the header
     encoded_pat = base64.b64encode(bytes(':' + os.environ['PAT'], 'utf-8')).decode('ascii')
 

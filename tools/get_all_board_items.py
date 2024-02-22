@@ -23,7 +23,7 @@ def get_all_board_items(team='Test'):
 
     # WiQL query to fetch all active work items (IDs only)
     query = {
-        "query": "SELECT [System.Id], [System.Title], [System.AreaPath] FROM workitems WHERE [System.AssignedTo] = @me ORDER BY [System.CreatedDate] DESC" #[System.AreaPath] = 'APIGW-Platform\\Test' AND
+        "query": "SELECT [System.Id], [System.Title], [System.AreaPath] FROM workitems WHERE [System.AreaPath] = 'APIGW-Platform\\Operate Team' AND [System.AssignedTo] = @me ORDER BY [System.CreatedDate] DESC" #[System.AreaPath] = 'APIGW-Platform\\Test' AND
     }
 
     # Headers for the WiQL query
