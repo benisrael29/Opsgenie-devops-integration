@@ -32,8 +32,6 @@ Start by cloning this repository to your local machine or directly to your cloud
 The integration requires setting up environment variables to securely store and access credentials. Create a `.env` file in the root of the project with the following contents:
 
 ```
-ADHA_DEVOPS_KEY=YourAzureDevOpsAccessKey
-URL=YourOpsgenieWebhookURL
 PAT=YourAzureDevOpsPersonalAccessToken
 ORGANISATION=YourAzureDevOpsOrganisation
 PROJECT=YourAzureDevOpsProject
